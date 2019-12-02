@@ -1,0 +1,54 @@
+﻿@model Soulstice.UI.MVC.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+<section class="roberto-about-area section-padding-100-0">
+
+    <!-- Hotel Search Form Area -->
+    <div class="hotel-search-form-area">
+        <div class="container-fluid">
+            <div class="hotel-search-form">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <h2 class="text-center mb-30">@ViewBag.Title</h2>
+                    <div class="row justify-content-between align-items-end">
+
+                        <div class="col-6 col-md-2 col-lg-3">
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Password" })
+                        </div>
+                        <div class="col-6 col-md-2 col-lg-3">
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+
+                        </div>
+
+                        <div class="col-12 col-md-3">
+                            <input type="submit" value="Login" class="form-control btn roberto-btn w-100" />
+                        </div>
+
+
+                    </div>
+
+                }
+                <p id="loginLeft">
+                    @Html.ActionLink("Forget your password?", "ForgotPassword")
+                </p>
+                <p id="loginRight">
+                    @Html.ActionLink("Register a new user?", "Register")
+                </p>
+                <div class="clear"></div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

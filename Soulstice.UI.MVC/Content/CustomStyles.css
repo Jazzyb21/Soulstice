@@ -1,0 +1,44 @@
+﻿body {
+    height: 100%;
+    position: relative;
+}
+
+.mainContent{
+    min-height: 70vh;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 20em;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/*login*/
+.hotel-search-form-area .hotel-search-form {
+    margin-top: 35em;
+}
+
+#loginLeft{
+    float: left;
+}
+
+#loginRight{
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+/*register*/
+#registerBtn {
+    justify-content: center;
+}
+
+div.mainContent #registerForm{
+    margin-top: 30em;
+}
