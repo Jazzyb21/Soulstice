@@ -4,11 +4,11 @@
 }
 
 .mainContent{
-    min-height: 70vh;
+    min-height: 100vh;
     overflow: hidden;
     display: block;
     position: relative;
-    padding-bottom: 20em;
+   
 }
 
 footer{
@@ -19,26 +19,26 @@ footer{
 
 /*login*/
 .hotel-search-form-area .hotel-search-form {
-    margin-top: 35em;
+    padding-bottom: 1em;
+    height: 80%;
+    width: 75%;
+    margin: 0 auto;
 }
 
-#loginLeft{
-    float: left;
+#loginContainer{
+    margin-top: 30em;
 }
-
-#loginRight{
-    float: right;
-}
-
-.clear {
-    clear: both;
-}
-
 /*register*/
 #registerBtn {
     justify-content: center;
 }
 
-div.mainContent #registerForm{
-    margin-top: 30em;
+#registerContainer{
+    margin-top: 23em;
+}
+@media only screen and (max-width: 767px) {
+
+    #registerContainer {
+        margin-top: 40em;
+    }
 }
