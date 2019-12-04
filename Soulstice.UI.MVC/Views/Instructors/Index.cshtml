@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Soulstice.DATA.EF.Instructor>
+
+@{
+    ViewBag.Title = "Instructors";
+}
+
+<div class="container">
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <p>
+        @Html.ActionLink("Add New Instructor", "Create")
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.InstructorName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Specialty)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Edit", "Instructors", new { id=item.InstructorID })">
+                            @Html.DisplayFor(modelItem => item.InstructorName)
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Specialty)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.InstructorID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

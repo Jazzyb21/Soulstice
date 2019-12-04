@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Soulstice.DATA.EF;
 
 namespace Soulstice.UI.MVC.Controllers
 {
@@ -153,11 +154,28 @@ namespace Soulstice.UI.MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    ViewBag.Link = callbackUrl;
-                    return View("DisplayEmail");
+                    //sets default to member
+                    UserManager.AddToRole(user.Id, "member");
+
+                    #region Custom User Details (GymMember Table)
+
+                    GymMember newGymMember = new GymMember();
+                    newGymMember.GymID = user.Id;
+                    newGymMember.FirstName = model.FirstName;
+                    newGymMember.LastName = model.LastName;
+                    newGymMember.City = model.City;
+                    newGymMember.State = model.State;
+                    newGymMember.Phone = model.Phone;
+                    newGymMember.GoalDescription = model.GoalDescription;
+                    newGymMember.ProfilePic = model.ProfilePic;
+
+                    SoulsticeEntities db = new SoulsticeEntities();
+                    db.GymMembers.Add(newGymMember);
+                    db.SaveChanges();
+                    
+
+                    #endregion
+                    return View("Login");
                 }
                 AddErrors(result);
             }

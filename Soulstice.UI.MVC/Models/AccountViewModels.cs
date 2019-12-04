@@ -79,6 +79,38 @@ namespace Soulstice.UI.MVC.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "First Name")]
+        [Required]
+        [StringLength(50, ErrorMessage = "* The value must be 50 characters or less.")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Last Name")]
+        [Required]
+        [StringLength(50, ErrorMessage = "* The value must be 50 characters or less.")]
+        public string LastName { get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "* The value must be 50 characters or less.")]
+        public string City { get; set; }
+
+        [Required]
+        [StringLength(2, ErrorMessage = "* The value must be 2 characters or less.")]
+        public string State { get; set; }
+
+        [Required]
+        [StringLength(13, ErrorMessage = "* The value must be 13 characters or less.")]
+        public string Phone { get; set; }
+
+
+        [Display(Name = "Goal")]
+        [UIHint("MultilineText")]
+        [DisplayFormat(NullDisplayText = "N/A")]
+        public string GoalDescription { get; set; }
+
+        [Display(Name = "Profile Picture")]
+        [DisplayFormat(NullDisplayText = "N/A")]
+        public string ProfilePic { get; set; }
     }
 
     public class ResetPasswordViewModel
@@ -109,4 +141,7 @@ namespace Soulstice.UI.MVC.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+  
 }
+

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Soulstice.DATA.EF.Class>
+
+@{
+    ViewBag.Title = "Class Schedule";
+}
+
+<div class="container">
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <p>
+        @Html.ActionLink("Add New Class", "Create")
+    </p>
+    <table class="table" id="table_id">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.ClassName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WeekDay.DayOfWeek)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fee)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Time)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Instructor.InstructorName)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Edit", "Classes", new { id = item.ClassID })">
+                            @Html.DisplayFor(modelItem => item.ClassName)
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WeekDay.DayOfWeek)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fee)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Instructor.FirstName)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.ClassID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ClassID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+@section scripts {
+    <script>
+            $(document).ready(function () {
+                $('#table_id').DataTable();
+            });
+    </script>
+}

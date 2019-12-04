@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Soulstice.DATA.EF.GymMember>
+
+@{
+    ViewBag.Title = "Members";
+}
+
+<div class="container">
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    @*<p>
+            @Html.ActionLink("Add New Member", "Create")
+        </p>*@
+    <table class="table" id="table_id">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProfilePic)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GoalDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td id="imageBox">
+                        <a href="@Url.Action("Edit", "GymMembers", new { id = item.GymID })">
+                            <img class="profileImage img-thumbnail border-00" src="~/Content/img/@item.ProfilePic" alt="@item.FullName" />
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "GymMembers", new { id = item.GymID })">
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </a>
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FormattedPhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GoalDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                    </td>
+                    <td>
+                        @Html.ActionLink("More Info", "Details", new { id = item.GymID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.GymID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+@section scripts {
+        <script>
+            $(document).ready(function () {
+                $('#table_id').DataTable();
+            });
+        </script>
+    }

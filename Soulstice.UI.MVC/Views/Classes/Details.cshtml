@@ -1,0 +1,24 @@
+﻿@model Soulstice.DATA.EF.Class
+
+@{
+    ViewBag.Title = "Details for " + Model.ClassName;
+}
+
+<div id="contentContainer">
+    <h2 class="text-center mb-50">@ViewBag.Title</h2>
+    <div id="contentLeft">
+        <p><strong>@Html.DisplayNameFor(model => model.ClassName):</strong> @Html.DisplayFor(model => model.ClassName)</p>
+        <p><strong>@Html.DisplayNameFor(model => model.Instructor.InstructorName):</strong> @Html.DisplayFor(model => model.Instructor.InstructorName)</p>
+        <p><strong>@Html.DisplayNameFor(model => model.Description):</strong> @Html.DisplayFor(model => model.Description)</p>
+    </div>
+    <div id="contentRight">
+        <p> <strong>@Html.DisplayNameFor(model => model.ReservationLimit):</strong> @Html.DisplayFor(model => model.ReservationLimit)</p>
+
+        <p><strong>@Html.DisplayNameFor(model => model.Fee):</strong> @Html.DisplayFor(model => model.Fee)</p>
+        <p><strong>@Html.DisplayNameFor(model => model.Time):</strong>  @Html.DisplayFor(model => model.Time)</p>
+    </div>
+    <div class="clearfix"></div>
+    <p id="footerLeft"> @Html.ActionLink("Back to Classes", "Index")</p>
+    <p id="footerRight"> @Html.ActionLink("Edit", "Edit", new { id = Model.ClassID })</p>
+    <div class="clearfix"></div>
+</div>

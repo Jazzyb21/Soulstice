@@ -1,0 +1,12 @@
+C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.DATA.EF\bin\Debug\Soulstice.DATA.EF.dll.config
+C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.DATA.EF\bin\Debug\Soulstice.DATA.EF.dll
+C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.DATA.EF\bin\Debug\Soulstice.DATA.EF.pdb
+C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.DATA.EF\bin\Debug\EntityFramework.dll
+C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.DATA.EF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.DATA.EF\bin\Debug\EntityFramework.xml
+C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.DATA.EF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.DATA.EF\obj\Debug\Soulstice.DATA.EF.csprojAssemblyReference.cache
+C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.DATA.EF\obj\Debug\Soulstice.DATA.EF.csproj.CoreCompileInputs.cache
+C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.DATA.EF\obj\Debug\Soulstice.DATA.EF.csproj.CopyComplete
+C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.DATA.EF\obj\Debug\Soulstice.DATA.EF.dll
+C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.DATA.EF\obj\Debug\Soulstice.DATA.EF.pdb

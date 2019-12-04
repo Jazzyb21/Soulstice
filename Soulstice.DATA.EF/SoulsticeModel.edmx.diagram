@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8a96ed47757946b49805b66d239e00b8" Name="Diagram1">
+        <EntityTypeShape EntityType="SoulsticeModel.AspNetUser" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoulsticeModel.Instructor" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoulsticeModel.Reservation" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoulsticeModel.WeekDay" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoulsticeModel.Class" Width="1.5" PointX="3" PointY="2.875" />
+        <AssociationConnector Association="SoulsticeModel.FK_Classes_Instructors" />
+        <AssociationConnector Association="SoulsticeModel.FK_Classes_WeekDays" />
+        <AssociationConnector Association="SoulsticeModel.FK_Reservations_Classes1" />
+        <EntityTypeShape EntityType="SoulsticeModel.GymMember" Width="1.5" PointX="3" PointY="9" />
+        <AssociationConnector Association="SoulsticeModel.FK_GymMembers_AspNetUsers" />
+        <AssociationConnector Association="SoulsticeModel.FK_Reservations_GymMembers" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

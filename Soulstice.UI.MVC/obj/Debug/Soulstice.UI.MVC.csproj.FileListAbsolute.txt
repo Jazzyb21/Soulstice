@@ -103,3 +103,6 @@ C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soul
 C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.UI.MVC\obj\Debug\Soulstice.UI.MVC.csproj.CopyComplete
 C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.UI.MVC\obj\Debug\Soulstice.UI.MVC.dll
 C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.UI.MVC\obj\Debug\Soulstice.UI.MVC.pdb
+C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.UI.MVC\bin\Soulstice.DATA.EF.dll
+C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.UI.MVC\bin\Soulstice.DATA.EF.pdb
+C:\Users\student\Documents\Visual Studio 2017\Projects\11_PROJECT\Soulstice\Soulstice.UI.MVC\bin\Soulstice.DATA.EF.dll.config

@@ -9,6 +9,7 @@
     <title>Soulstice</title>
     <!-- Favicon -->
     <!-- Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
     <link href="~/Content/style.css" rel="stylesheet" />
     <link href="~/Content/CustomStyles.css" rel="stylesheet" />
     @RenderSection("styles", required: false)
@@ -76,8 +77,14 @@
                             <div class="classynav">
                                 <ul id="nav">
                                     <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                                    <li><a href="#">Classes</a></li>
-                                    <li><a href="#">Instructors</a></li>
+                                    @if (User.IsInRole("Admin") || (User.IsInRole("staff")))
+                                    {
+                                        <li><a href="@Url.Action("Index", "GymMembers")">Members</a></li>
+                                    }
+
+                                    <li><a href="@Url.Action("Index", "Classes")">Classes</a></li>
+                                    <li><a href="@Url.Action("Index", "Instructors")">Instructors</a></li>
+                                    <li><a href="@Url.Action("Index", "Reservations")">Reservations</a></li>
                                     <li>
                                         <a href="#">About Us</a>
                                         <ul class="dropdown">
@@ -86,8 +93,16 @@
                                     </li>
                                     <li>
                                         @Html.Partial("_LoginPartial")
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <ul class="dropdown">
+                                                <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                                                <li> @Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                                            </ul>
+                                        }
+
                                     </li>
-                                    
+
                                 </ul>
                                 <!-- Search -->
                                 @*<div class="search-btn ml-4">
@@ -95,8 +110,8 @@
                                     </div>*@
                                 <!-- Book Now -->
                                 @*<div class="book-now-btn ml-3 ml-lg-5">
-                                    <a href="#">Sign Up Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                                </div>*@
+                                        <a href="#">Sign Up Now <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                                    </div>*@
                             </div>
                             <!-- Nav End -->
                         </div>
@@ -110,7 +125,7 @@
     <div class="mainContent">
         @RenderBody()
     </div>
-        
+
 
 
     <!-- Footer Area Start -->
@@ -155,6 +170,8 @@
     <script src="~/Scripts/js/roberto.bundle.js"></script>
     <!-- Active -->
     <script src="~/Scripts/js/default-assets/active.js"></script>
+    <!--jQuery Datatables-->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

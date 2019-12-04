@@ -1,0 +1,85 @@
+﻿@model Soulstice.DATA.EF.Class
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" id="contentContainer">
+        <div id="editContainer">
+            <h2 class="text-center">@ViewBag.Title</h2>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ClassID)
+
+            <div class="row form-group">
+
+
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.ClassName, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.ClassName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ClassName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+            <div class="row form-group">
+                <div class="offset-4 col-md-4">
+                    @Html.LabelFor(model => model.Fee, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Fee, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Fee, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="row form-group">
+                <div class="offset-4 col-md-4">
+                    @Html.LabelFor(model => model.Time, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
+                </div>
+
+
+            </div>
+
+            <div class="row form-group">
+                <div class="offset-4 col-md-4">
+
+                    @Html.DropDownList("WeekDayID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.WeekDayID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="offset-4 col-md-4">
+
+                    @Html.DropDownList("InstructorID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.InstructorID, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                <p id="footerLeft">  @Html.ActionLink("Back to Classes", "Index")</p>
+                <p id="footerRight"> <input type="submit" value="Save" class="btn btn-default" /></p>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

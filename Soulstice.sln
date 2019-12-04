@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soulstice.UI.MVC", "Soulstice.UI.MVC\Soulstice.UI.MVC.csproj", "{1B48A2AE-9ECE-4322-A400-0414FDBDD2D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soulstice.DATA.EF", "Soulstice.DATA.EF\Soulstice.DATA.EF.csproj", "{30858BAE-517E-4824-8EFA-CD6D3F4D9408}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1B48A2AE-9ECE-4322-A400-0414FDBDD2D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B48A2AE-9ECE-4322-A400-0414FDBDD2D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B48A2AE-9ECE-4322-A400-0414FDBDD2D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30858BAE-517E-4824-8EFA-CD6D3F4D9408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30858BAE-517E-4824-8EFA-CD6D3F4D9408}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30858BAE-517E-4824-8EFA-CD6D3F4D9408}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30858BAE-517E-4824-8EFA-CD6D3F4D9408}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

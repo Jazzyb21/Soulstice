@@ -42,3 +42,66 @@ footer{
         margin-top: 40em;
     }
 }
+
+/*GymMember Index*/
+
+#imageBox{
+    width: 15em;
+}
+
+.profileImage {
+    height: 10em;
+    width: 13em;
+}
+
+/*GymMember Details*/
+
+#contentContainer {
+    margin: 0 auto;
+    width: 75%;
+    margin-top: 4em;
+    padding-top: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    box-shadow: 0 2px 15px 1px rgba(0, 0, 0, 0.15);
+}
+
+#contentLeft{
+    float: left;
+    width: 60% ;
+    min-width: 50%;
+}
+
+#contentRight{
+    float: right;
+    width: 39%;
+    min-width: 40%;
+}
+
+#footerLeft{
+    display: inline;
+    text-align: right;
+}
+
+#footerRight {
+    display: inline;
+    float: right;
+}
+
+@media only screen and (max-width: 767px) {
+    #contentLeft, #contentRight {
+        min-width: 100%;
+    }
+}
+
+/*GymMembers Container*/
+#editContainer{
+    margin: 0 auto;
+}
+
+/*Edit Classes*/
+
+textarea.form-control {
+    max-height: 10em;
+    min-height: 10em;
+}
