@@ -37,6 +37,7 @@ namespace Soulstice.UI.MVC.Controllers
         }
 
         // GET: Classes/Create
+       [Authorize(Roles ="Admin, Staff")]
         public ActionResult Create()
         {
             ViewBag.InstructorID = new SelectList(db.Instructors, "InstructorID", "FirstName");
@@ -49,6 +50,7 @@ namespace Soulstice.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Staff")]
         public ActionResult Create([Bind(Include = "ClassID,ClassName,Description,InstructorID,ReservationLimit,Fee,WeekDayID,Time")] Class @class)
         {
             if (ModelState.IsValid)
@@ -64,6 +66,7 @@ namespace Soulstice.UI.MVC.Controllers
         }
 
         // GET: Classes/Edit/5
+        [Authorize(Roles = "Admin, Staff")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +88,7 @@ namespace Soulstice.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Staff")]
         public ActionResult Edit([Bind(Include = "ClassID,ClassName,Description,InstructorID,ReservationLimit,Fee,WeekDayID,Time")] Class @class)
         {
             if (ModelState.IsValid)
@@ -99,6 +103,7 @@ namespace Soulstice.UI.MVC.Controllers
         }
 
         // GET: Classes/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,6 +119,7 @@ namespace Soulstice.UI.MVC.Controllers
         }
 
         // POST: Classes/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

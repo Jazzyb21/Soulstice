@@ -17,6 +17,9 @@ footer{
     width: 100%;
 }
 
+
+
+
 /*login*/
 .hotel-search-form-area .hotel-search-form {
     padding-bottom: 1em;
@@ -104,4 +107,11 @@ footer{
 textarea.form-control {
     max-height: 10em;
     min-height: 10em;
+}
+
+/*Create Reservation*/
+
+.nice-select{
+    float: unset;
+    width: unset;
 }

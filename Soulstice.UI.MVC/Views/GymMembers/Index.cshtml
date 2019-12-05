@@ -6,10 +6,11 @@
 
 <div class="container">
     <h2 class="text-center">@ViewBag.Title</h2>
-
-    @*<p>
-            @Html.ActionLink("Add New Member", "Create")
-        </p>*@
+  
+    <p>
+        @Html.ActionLink("Add New Member", "Create")
+    </p>
+    
     <table class="table" id="table_id">
         <thead>
             <tr>
@@ -56,8 +57,12 @@
                         @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                     </td>
                     <td>
-                        @Html.ActionLink("More Info", "Details", new { id = item.GymID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.GymID })
+                        @Html.ActionLink("More Info", "Details", new { id = item.GymID })
+                        @if (User.IsInRole("Admin"))
+                        {
+                           @:| @Html.ActionLink("Delete", "Delete", new { id = item.GymID })
+                        }
+
                     </td>
                 </tr>
             }

@@ -1,6 +1,7 @@
 ﻿@using Soulstice.DATA.EF
 @using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated) {
+@if (Request.IsAuthenticated)
+{
 
     SoulsticeEntities db = new SoulsticeEntities();
 
@@ -10,27 +11,25 @@
 
     string userName = "Guest";
 
-    if (currentUser != null )
+    if (currentUser != null)
     {
         userName = currentUser.FirstName;
     }
 
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
         @Html.AntiForgeryToken()
 
 
 
-             <li>@Html.ActionLink($"Hi, {userName}!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
-
-
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-
-
+        <li>@Html.ActionLink($"Hi, {userName}!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+       
     }
 }
-else {
+else
+{
 
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    
+    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+
 }

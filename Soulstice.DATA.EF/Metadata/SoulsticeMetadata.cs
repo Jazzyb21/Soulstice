@@ -88,7 +88,10 @@ namespace Soulstice.DATA.EF
     [MetadataType(typeof(ClassMetadata))]
     public partial class Class
     {
-
+        public string selectClass
+        {
+            get { return $"{ClassName} - {WeekDay.DayOfWeek} - {Time} - {Fee:c}"; }
+        }
     }
 
     #endregion

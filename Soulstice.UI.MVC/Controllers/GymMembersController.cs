@@ -10,6 +10,7 @@ using Soulstice.DATA.EF;
 
 namespace Soulstice.UI.MVC.Controllers
 {
+   [Authorize(Roles ="Admin, Staff")]
     public class GymMembersController : Controller
     {
         private SoulsticeEntities db = new SoulsticeEntities();
@@ -39,7 +40,6 @@ namespace Soulstice.UI.MVC.Controllers
         }
 
         // GET: GymMembers/Create
-        [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
             ViewBag.GymID = new SelectList(db.AspNetUsers, "Id", "Email");
@@ -51,7 +51,6 @@ namespace Soulstice.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles ="Admin")]
         public ActionResult Create([Bind(Include = "GymID,FirstName,LastName,City,State,Phone,GoalDescription,ProfilePic")] GymMember gymMember)
         {
             if (ModelState.IsValid)
@@ -66,7 +65,6 @@ namespace Soulstice.UI.MVC.Controllers
         }
 
         // GET: GymMembers/Edit/5
-        [Authorize(Roles ="Admin")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -87,7 +85,6 @@ namespace Soulstice.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles ="Admin")]
         public ActionResult Edit([Bind(Include = "GymID,FirstName,LastName,City,State,Phone,GoalDescription,ProfilePic")] GymMember gymMember)
         {
             if (ModelState.IsValid)

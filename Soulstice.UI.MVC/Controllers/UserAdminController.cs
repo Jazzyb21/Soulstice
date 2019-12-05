@@ -86,12 +86,12 @@ namespace Soulstice.UI.MVC.Controllers
         // POST: /Users/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(RegisterViewModel userViewModel, params string[] selectedRoles)
+        public async Task<ActionResult> Create(StaffViewModel staffViewModel, params string[] selectedRoles)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email };
-                var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
+                var user = new ApplicationUser { UserName = staffViewModel.Email, Email = staffViewModel.Email };
+                var adminresult = await UserManager.CreateAsync(user, staffViewModel.Password);
 
                 //Add User to the selected Roles 
                 if (adminresult.Succeeded)

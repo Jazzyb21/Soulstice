@@ -19,6 +19,9 @@
     </div>
     <div class="clearfix"></div>
     <p id="footerLeft"> @Html.ActionLink("Back to Classes", "Index")</p>
+    @if (User.IsInRole("Admin, Staff"))
+    {
     <p id="footerRight"> @Html.ActionLink("Edit", "Edit", new { id = Model.ClassID })</p>
+    }
     <div class="clearfix"></div>
 </div>

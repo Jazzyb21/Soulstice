@@ -1,4 +1,22 @@
-﻿
+﻿@using Soulstice.DATA.EF;
+@using Microsoft.AspNet.Identity
+@model Soulstice.DATA.EF.Reservation
+
+
+@{
+    ViewBag.Title = "Create Reservation";
+
+    //SoulsticeEntities db = new SoulsticeEntities();
+
+    //string currentUser = User.Identity.GetUserId();
+
+    //if (!string.IsNullOrEmpty(currentUser) && User.IsInRole("member"))
+    //{
+    //    GymMember gm = db.GymMembers.Where(x => x.GymID == currentUser).Single();
+    //}
+
+
+}
 <!-- Welcome Area Start -->
 <section class="welcome-area">
     <div class="welcome-slides owl-carousel">
@@ -13,7 +31,11 @@
                             <div class="welcome-text text-center">
                                 <h6 data-animation="fadeInLeft" data-delay="200ms">Mind &amp; Body</h6>
                                 <h2 data-animation="fadeInLeft" data-delay="500ms">Soulstice</h2>
-                                <a href="#" class="btn roberto-btn btn-2" data-animation="fadeInLeft" data-delay="800ms">Sign Up Now</a>
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <a href="@Url.Action("GymMemberReservation", "Reservations")" class="btn roberto-btn btn-2" data-animation="fadeInLeft" data-delay="800ms">Sign Up Now</a>
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -31,7 +53,11 @@
                             <div class="welcome-text text-center">
                                 <h6 data-animation="fadeInUp" data-delay="200ms">Mind &amp; Body</h6>
                                 <h2 data-animation="fadeInUp" data-delay="500ms">Soulstice</h2>
-                                <a href="#" class="btn roberto-btn btn-2" data-animation="fadeInUp" data-delay="800ms">Sign Up Now</a>
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <a href="@Url.Action("GymMemberReservation", "Reservations")" class="btn roberto-btn btn-2" data-animation="fadeInUp" data-delay="800ms">Sign Up Now</a>
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -49,7 +75,11 @@
                             <div class="welcome-text text-center">
                                 <h6 data-animation="fadeInDown" data-delay="200ms">Mind &amp;Body</h6>
                                 <h2 data-animation="fadeInDown" data-delay="500ms">Soulstice</h2>
-                                <a href="#" class="btn roberto-btn btn-2" data-animation="fadeInDown" data-delay="800ms">Sign Up Now</a>
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <a href="@Url.Action("GymMemberReservation", "Reservations")" class="btn roberto-btn btn-2" data-animation="fadeInDown" data-delay="800ms">Sign Up Now</a>
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -60,141 +90,155 @@
 </section>
 <!-- Welcome Area End -->
 <!-- About Us Area Start -->
-<section class="roberto-about-area section-padding-100-0">
-    <!-- Hotel Search Form Area -->
-    <div class="hotel-search-form-area">
-        <div class="container-fluid">
-            <div class="hotel-search-form">
-                <form action="#" method="post">
-                    <div class="row justify-content-between align-items-end">
-                        <div class="col-6 col-md-2 col-lg-3">
-                            <label for="checkIn">Check In</label>
-                            <input type="date" class="form-control" id="checkIn" name="checkin-date">
-                        </div>
-                        <div class="col-6 col-md-2 col-lg-3">
-                            <label for="checkOut">Check Out</label>
-                            <input type="date" class="form-control" id="checkOut" name="checkout-date">
-                        </div>
-                        <div class="col-4 col-md-1">
-                            <label for="room">Room</label>
-                            <select name="room" id="room" class="form-control">
-                                <option value="01">01</option>
-                                <option value="02">02</option>
-                                <option value="03">03</option>
-                                <option value="04">04</option>
-                                <option value="05">05</option>
-                                <option value="06">06</option>
-                            </select>
-                        </div>
-                        <div class="col-4 col-md-1">
-                            <label for="adults">Adult</label>
-                            <select name="adults" id="adults" class="form-control">
-                                <option value="01">01</option>
-                                <option value="02">02</option>
-                                <option value="03">03</option>
-                                <option value="04">04</option>
-                                <option value="05">05</option>
-                                <option value="06">06</option>
-                            </select>
-                        </div>
-                        <div class="col-4 col-md-2 col-lg-1">
-                            <label for="children">Children</label>
-                            <select name="children" id="children" class="form-control">
-                                <option value="01">01</option>
-                                <option value="02">02</option>
-                                <option value="03">03</option>
-                                <option value="04">04</option>
-                                <option value="05">05</option>
-                                <option value="06">06</option>
-                            </select>
-                        </div>
-                        <div class="col-12 col-md-3">
-                            <button type="submit" class="form-control btn roberto-btn w-100">Check Availability</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
+@if (Request.IsAuthenticated && User.IsInRole("Member"))
+{
 
-<!-- Testimonials Area Start -->
-<section class="roberto-testimonials-area section-padding-100-0">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-12 col-md-6">
-                <div class="testimonial-thumbnail owl-carousel mb-100">
-                    <img src="~/Content/img/bg-img/10.jpg" alt="">
-                    <img src="~/Content/img/bg-img/11.jpg" alt="">
+
+
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <section class="roberto-about-area section-padding-100-0">
+            <!-- Hotel Search Form Area -->
+            <div class="hotel-search-form-area">
+                <div class="container-fluid">
+                    <div class="hotel-search-form">
+                        <h2 class="text-center" style="margin-bottom: 1.5em;">@ViewBag.GymMember</h2>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="row">
+                            <div class="offset-2 col-md-8">
+                                @Html.DropDownList("Classid", null, "Select a Class - Fee Due at Time of Class", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Class.ClassID, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                        <div class="form-group text-center">
+                            <input type="submit" value="Sign Up Now" class="roberto-btn" />
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
-                <!-- Section Heading -->
-                <div class="section-heading">
-                    <h6>Testimonials</h6>
-                    <h2>Our Guests Love Us</h2>
-                </div>
-                <!-- Testimonial Slide -->
-                <div class="testimonial-slides owl-carousel mb-100">
-                    <!-- Single Testimonial Slide -->
-                    <div class="single-testimonial-slide">
-                        <h5>“This can be achieved by applying search engine optimization or popularly known as SEO. This is a marketing strategy which increases the quality and quantity of traffic flow to a particular website via search engines.”</h5>
-                        <div class="rating-title">
-                            <div class="rating">
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                            </div>
-                            <h6>Robert Downey <span>- CEO Deercreative</span></h6>
+        </section>
+
+    }
+}
+
+<div class="container mt-100">
+    <div class="row align-items-center">
+        <div class="col-12 col-lg-6">
+            <!-- Section Heading -->
+            <div class="section-heading wow fadeInUp" data-wow-delay="100ms">
+                <h6>About Us</h6>
+                <h2>Welcome to <br>Roberto Hotel Luxury</h2>
+            </div>
+            <div class="about-us-content mb-100">
+                <h5 class="wow fadeInUp" data-wow-delay="300ms">With over 340 hotels worldwide, NH Hotel Group offers a wide variety of hotels catering for a perfect stay no matter where your destination.</h5>
+                <p class="wow fadeInUp" data-wow-delay="400ms">Manager: <span>Michen Taylor</span></p>
+                <img src="~/Content/img/core-img/signature.png" alt="" class="wow fadeInUp" data-wow-delay="500ms">
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="about-us-thumbnail mb-100 wow fadeInUp" data-wow-delay="700ms">
+                <div class="row no-gutters">
+                    <div class="col-6">
+                        <div class="single-thumb">
+                            <img src="~/Content/img/bg-img/13.jpg" alt="">
+                        </div>
+                        <div class="single-thumb">
+                            <img src="~/Content/img/bg-img/14.jpg" alt="">
                         </div>
                     </div>
-                    <!-- Single Testimonial Slide -->
-                    <div class="single-testimonial-slide">
-                        <h5>“Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus delectus facilis molestias, error vitae praesentium quos eaque qui ea, tempore blanditiis sint reprehenderit, quaerat. Commodi ab architecto sit suscipit exercitationem!”</h5>
-                        <div class="rating-title">
-                            <div class="rating">
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                            </div>
-                            <h6>Akash Downey <span>- CEO Deercreative</span></h6>
-                        </div>
-                    </div>
-                    <!-- Single Testimonial Slide -->
-                    <div class="single-testimonial-slide">
-                        <h5>“Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, ex quos. Alias a rem maiores, possimus dicta sit distinctio quis iusto!”</h5>
-                        <div class="rating-title">
-                            <div class="rating">
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                            </div>
-                            <h6>Downey Sarah <span>- CEO Deercreative</span></h6>
-                        </div>
-                    </div>
-                    <!-- Single Testimonial Slide -->
-                    <div class="single-testimonial-slide">
-                        <h5>“Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore sequi laboriosam fugit suscipit aspernatur, minima minus voluptatum, id ab atque similique ex earum. Magni.”</h5>
-                        <div class="rating-title">
-                            <div class="rating">
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                            </div>
-                            <h6>Robert Brown <span>- CEO Deercreative</span></h6>
+                    <div class="col-6">
+                        <div class="single-thumb">
+                            <img src="~/Content/img/bg-img/15.jpg" alt="">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
+    </section>
+<!-- About Us Area End -->
+@*<!-- Testimonials Area Start -->
+    <section class="roberto-testimonials-area section-padding-100-0">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6">
+                    <div class="testimonial-thumbnail owl-carousel mb-100">
+                        <img src="~/Content/img/bg-img/10.jpg" alt="">
+                        <img src="~/Content/img/bg-img/11.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <!-- Section Heading -->
+                    <div class="section-heading">
+                        <h6>Testimonials</h6>
+                        <h2>Our Guests Love Us</h2>
+                    </div>
+                    <!-- Testimonial Slide -->
+                    <div class="testimonial-slides owl-carousel mb-100">
+                        <!-- Single Testimonial Slide -->
+                        <div class="single-testimonial-slide">
+                            <h5>“This can be achieved by applying search engine optimization or popularly known as SEO. This is a marketing strategy which increases the quality and quantity of traffic flow to a particular website via search engines.”</h5>
+                            <div class="rating-title">
+                                <div class="rating">
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                </div>
+                                <h6>Robert Downey <span>- CEO Deercreative</span></h6>
+                            </div>
+                        </div>
+                        <!-- Single Testimonial Slide -->
+                        <div class="single-testimonial-slide">
+                            <h5>“Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus delectus facilis molestias, error vitae praesentium quos eaque qui ea, tempore blanditiis sint reprehenderit, quaerat. Commodi ab architecto sit suscipit exercitationem!”</h5>
+                            <div class="rating-title">
+                                <div class="rating">
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                </div>
+                                <h6>Akash Downey <span>- CEO Deercreative</span></h6>
+                            </div>
+                        </div>
+                        <!-- Single Testimonial Slide -->
+                        <div class="single-testimonial-slide">
+                            <h5>“Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, ex quos. Alias a rem maiores, possimus dicta sit distinctio quis iusto!”</h5>
+                            <div class="rating-title">
+                                <div class="rating">
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                </div>
+                                <h6>Downey Sarah <span>- CEO Deercreative</span></h6>
+                            </div>
+                        </div>
+                        <!-- Single Testimonial Slide -->
+                        <div class="single-testimonial-slide">
+                            <h5>“Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore sequi laboriosam fugit suscipit aspernatur, minima minus voluptatum, id ab atque similique ex earum. Magni.”</h5>
+                            <div class="rating-title">
+                                <div class="rating">
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                </div>
+                                <h6>Robert Brown <span>- CEO Deercreative</span></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>*@
 <!-- Testimonials Area End -->

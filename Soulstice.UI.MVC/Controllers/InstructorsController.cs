@@ -21,21 +21,22 @@ namespace Soulstice.UI.MVC.Controllers
         }
 
         // GET: Instructors/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Instructor instructor = db.Instructors.Find(id);
-            if (instructor == null)
-            {
-                return HttpNotFound();
-            }
-            return View(instructor);
-        }
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Instructor instructor = db.Instructors.Find(id);
+        //    if (instructor == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(instructor);
+        //}
 
         // GET: Instructors/Create
+        [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
             return View();
@@ -59,6 +60,7 @@ namespace Soulstice.UI.MVC.Controllers
         }
 
         // GET: Instructors/Edit/5
+        [Authorize(Roles ="Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +80,7 @@ namespace Soulstice.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Admin")]
         public ActionResult Edit([Bind(Include = "InstructorID,FirstName,LastName,Specialty")] Instructor instructor)
         {
             if (ModelState.IsValid)
@@ -90,6 +93,7 @@ namespace Soulstice.UI.MVC.Controllers
         }
 
         // GET: Instructors/Delete/5
+        [Authorize(Roles ="Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +111,7 @@ namespace Soulstice.UI.MVC.Controllers
         // POST: Instructors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Instructor instructor = db.Instructors.Find(id);

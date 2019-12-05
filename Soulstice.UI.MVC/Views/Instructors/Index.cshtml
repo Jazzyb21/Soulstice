@@ -7,9 +7,12 @@
 <div class="container">
     <h2 class="text-center">@ViewBag.Title</h2>
 
+    @if (User.IsInRole("Admin"))
+    {
     <p>
         @Html.ActionLink("Add New Instructor", "Create")
     </p>
+    }
     <table class="table">
         <thead>
             <tr>
@@ -36,7 +39,10 @@
                         @Html.DisplayFor(modelItem => item.Specialty)
                     </td>
                     <td>
+                        @if (User.IsInRole("Admin"))
+                        {
                         @Html.ActionLink("Delete", "Delete", new { id = item.InstructorID })
+                        }
                     </td>
                 </tr>
             }

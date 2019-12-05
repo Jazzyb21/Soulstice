@@ -77,30 +77,34 @@
                             <div class="classynav">
                                 <ul id="nav">
                                     <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                                    @if (User.IsInRole("Admin") || (User.IsInRole("staff")))
+                                    @if (User.IsInRole("Admin") || (User.IsInRole("Staff")))
                                     {
                                         <li><a href="@Url.Action("Index", "GymMembers")">Members</a></li>
                                     }
 
                                     <li><a href="@Url.Action("Index", "Classes")">Classes</a></li>
                                     <li><a href="@Url.Action("Index", "Instructors")">Instructors</a></li>
-                                    <li><a href="@Url.Action("Index", "Reservations")">Reservations</a></li>
-                                    <li>
-                                        <a href="#">About Us</a>
+                                    @if (User.IsInRole("Admin") || (User.IsInRole("staff")))
+                                    {
+                                        <li><a href="@Url.Action("Index", "Reservations")">Reservations</a></li>
+                                    }
+
+                                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+
+
+                                    <li><a href="">Account</a>
                                         <ul class="dropdown">
-                                            <li><a href="#">Contact</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        @Html.Partial("_LoginPartial")
-                                        @if (User.IsInRole("Admin"))
-                                        {
-                                            <ul class="dropdown">
+                                            <li> @Html.Partial("_LoginPartial")</li>
+                                            @if (User.IsInRole("Admin"))
+                                            {
                                                 <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
                                                 <li> @Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
-                                            </ul>
-                                        }
-
+                                            }
+                                            @if (Request.IsAuthenticated)
+                                            {
+                                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                            }
+                                        </ul>
                                     </li>
 
                                 </ul>

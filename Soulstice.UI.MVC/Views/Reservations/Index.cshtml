@@ -1,39 +1,75 @@
 ﻿@model IEnumerable<Soulstice.DATA.EF.Reservation>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Reservation";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <h2 class="text-center">@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Class.ClassName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GymMember.FirstName)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @Html.ActionLink("Add New Reservation", "Create")
+    </p>
+    <table class="table" id="table_id">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.GymMember.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Class.ClassName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Class.WeekDay.DayOfWeek)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Class.Time)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Class.Fee)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Class.ClassName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GymMember.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ReservationID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ReservationID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ReservationID })
-        </td>
-    </tr>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GymMember.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Class.ClassName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Class.WeekDay.DayOfWeek)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Class.Time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Class.Fee)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.ReservationID }) |*@
+                        @*@Html.ActionLink("Details", "Details", new { id = item.ReservationID }) |*@
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ReservationID })
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+@section scripts {
+    <script>
+            $(document).ready(function () {
+                $('#table_id').DataTable();
+            });
+    </script>
 }
-
-</table>
