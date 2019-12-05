@@ -27,6 +27,7 @@
     <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Specialty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Classes" Relationship="SoulsticeModel.FK_Classes_Instructors" FromRole="Instructor" ToRole="Class" />
+    <Property Name="InstructorPic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Reservation">
     <Key>

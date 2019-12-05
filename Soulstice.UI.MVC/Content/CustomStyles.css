@@ -115,3 +115,9 @@ textarea.form-control {
     float: unset;
     width: unset;
 }
+
+/*instructor index*/
+
+#iconRight{
+    float: right;
+}

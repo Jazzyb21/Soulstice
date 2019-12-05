@@ -128,9 +128,8 @@ namespace Soulstice.UI.MVC.Models
         [DisplayFormat(NullDisplayText = "N/A")]
         public string GoalDescription { get; set; }
 
-        [Display(Name = "Profile Picture")]
-        [DisplayFormat(NullDisplayText = "N/A")]
-        public string ProfilePic { get; set; }
+        //[Display(Name = "Profile Picture")]
+        //public string ProfilePic { get; set; }
     }
 
     public class ResetPasswordViewModel

@@ -22,6 +22,7 @@
     <EntitySetMapping Name="Instructors">
       <EntityTypeMapping TypeName="SoulsticeModel.Instructor">
         <MappingFragment StoreEntitySet="Instructors">
+          <ScalarProperty Name="InstructorPic" ColumnName="InstructorPic" />
           <ScalarProperty Name="InstructorID" ColumnName="InstructorID" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />

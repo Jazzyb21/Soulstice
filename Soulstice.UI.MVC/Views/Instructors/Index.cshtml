@@ -4,14 +4,14 @@
     ViewBag.Title = "Instructors";
 }
 
-<div class="container">
+@*<div class="container">
     <h2 class="text-center">@ViewBag.Title</h2>
 
     @if (User.IsInRole("Admin"))
     {
-    <p>
-        @Html.ActionLink("Add New Instructor", "Create")
-    </p>
+        <p>
+            @Html.ActionLink("Add New Instructor", "Create")
+        </p>
     }
     <table class="table">
         <thead>
@@ -41,7 +41,7 @@
                     <td>
                         @if (User.IsInRole("Admin"))
                         {
-                        @Html.ActionLink("Delete", "Delete", new { id = item.InstructorID })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.InstructorID })
                         }
                     </td>
                 </tr>
@@ -49,4 +49,47 @@
         </tbody>
 
     </table>
-</div>
+</div>*@
+
+
+<!-- Blog Area Start -->
+<section class="roberto-blog-area section-padding-100-0">
+    <div class="container">
+        @if (User.IsInRole("Admin"))
+        {
+            <p>
+                @Html.ActionLink("Add New Instructor", "Create")
+            </p>
+        }
+        <div class="row">
+            <!-- Section Heading -->
+            <div class="col-12">
+                <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
+                    @*<h6>Our Blog</h6>*@
+                    <h2>@ViewBag.Title</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <!-- Single Post Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-post-area mb-100 wow fadeInUp" data-wow-delay="300ms">
+                        <a href="@Url.Action("Edit", "Instructors", new { id=item.InstructorID })" class="post-thumbnail"><img src="~/Content/img/@item.InstructorPic" alt="@item.InstructorName"></a>
+                        <!-- Post Title -->
+                        <a href="@Url.Action("Edit", "Instructors", new { id=item.InstructorID })" class="post-title text-center"> @Html.DisplayFor(modelItem => item.InstructorName)</a>
+                        <p class="text-center"> @Html.DisplayFor(modelItem => item.Specialty)</p>
+                        @if (User.IsInRole("Admin"))
+                        {
+                        <span id="iconRight"><a href="@Url.Action("Delete", "Instructors", new { id = item.InstructorID, @class = "btn continue-btn" })"><i class="fa fa-trash" aria-hidden="true"></i></a></span>
+                        }
+                        </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</section>
+<!-- Blog Area End -->

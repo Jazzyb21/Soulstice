@@ -63,10 +63,33 @@ namespace Soulstice.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                reservation.GymID = User.Identity.GetUserId();
-                db.Reservations.Add(reservation);
-                db.SaveChanges();
-                return RedirectToAction("Index", "Classes");
+
+
+                //Get count of number of people registered to take a specific class
+                //what day is this res for?
+                //var dayOfClass = db.Classes.Where(c => c.WeekDayID == reservation.Class.WeekDayID).Single() ;
+
+                //var classDay = db.Reservations.Where(x => x.Class.WeekDayID == reservation.Class.WeekDayID);
+
+
+               
+                //get reservations limit for specific class - good code
+                var resLimit = db.Classes.Where(x => x.ClassID == reservation.ClassID).Single().ReservationLimit;
+
+
+                //if(peopleCount < reservationLimit)
+                //{
+                //    //create reservation
+                    reservation.GymID = User.Identity.GetUserId();
+                    db.Reservations.Add(reservation);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Classes");
+                //}
+                //else
+                //{
+                //    ViewBag.Message = "This class had reached the maximum number of particpants for this class. Please choose another one.";
+                //}
+
             }
 
             ViewBag.ClassID = new SelectList(db.Classes, "ClassID", "ClassName", reservation.ClassID);

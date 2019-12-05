@@ -47,10 +47,38 @@ namespace Soulstice.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "InstructorID,FirstName,LastName,Specialty")] Instructor instructor)
+        public ActionResult Create([Bind(Include = "InstructorID,FirstName,LastName,Specialty")] Instructor instructor, HttpPostedFileBase instructorPic)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+                //use a default image if none is provided
+                string imgName = "default.jpg";
+
+                if (instructorPic != null) //your httpPostedFileBase Object that should be added to the action != null
+                {
+                    imgName = instructorPic.FileName;
+
+                    string ext = imgName.Substring(imgName.LastIndexOf('.'));
+
+                    string[] goodExts = { ".jpg", ".jpeg", "gif", ".png" };
+
+                    if (goodExts.Contains(ext.ToLower())) /*&& (instructorPic.ContentLength <= 4194304)) *///4mb max asp.net
+                    {
+                        imgName = Guid.NewGuid() + ext;
+
+                        instructorPic.SaveAs(Server.MapPath("~/Content/img/" + imgName));
+
+                    }
+                    else
+                    {
+                        imgName = "default.jpg";
+                    }
+                }
+
+                instructor.InstructorPic = imgName;
+
+                #endregion
                 db.Instructors.Add(instructor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -81,10 +109,39 @@ namespace Soulstice.UI.MVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles ="Admin")]
-        public ActionResult Edit([Bind(Include = "InstructorID,FirstName,LastName,Specialty")] Instructor instructor)
+        public ActionResult Edit([Bind(Include = "InstructorID,FirstName,LastName,Specialty")] Instructor instructor, HttpPostedFileBase instructorPic)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+                //use a default image if none is provided
+                string imgName = "default.jpg";
+
+                if (instructorPic != null) //your httpPostedFileBase Object that should be added to the action != null
+                {
+                    imgName = instructorPic.FileName;
+
+                    string ext = imgName.Substring(imgName.LastIndexOf('.'));
+
+                    string[] goodExts = { ".jpg", ".jpeg", "gif", ".png" };
+
+                    if (goodExts.Contains(ext.ToLower())) /*&& (instructorPic.ContentLength <= 4194304)) *///4mb max asp.net
+                    {
+                        imgName = Guid.NewGuid() + ext;
+
+                        instructorPic.SaveAs(Server.MapPath("~/Content/img/" + imgName));
+
+                    }
+                    else
+                    {
+                        imgName = "default.jpg";
+                    }
+                }
+
+                instructor.InstructorPic = imgName;
+
+                #endregion
+
                 db.Entry(instructor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

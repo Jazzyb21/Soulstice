@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Soulstice.DATA.EF;
+using Soulstice.UI.MVC.Models;
 
 namespace Soulstice.UI.MVC.Controllers
 {
@@ -39,30 +40,80 @@ namespace Soulstice.UI.MVC.Controllers
             return View(gymMember);
         }
 
-        // GET: GymMembers/Create
-        public ActionResult Create()
-        {
-            ViewBag.GymID = new SelectList(db.AspNetUsers, "Id", "Email");
-            return View();
-        }
 
-        // POST: GymMembers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GymID,FirstName,LastName,City,State,Phone,GoalDescription,ProfilePic")] GymMember gymMember)
-        {
-            if (ModelState.IsValid)
-            {
-                db.GymMembers.Add(gymMember);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        #region Create Action
+        //// GET: GymMembers/Create
+        //public ActionResult Create()
+        //{
+        //    ViewBag.GymID = new SelectList(db.AspNetUsers, "Id", "Email");
+        //    return View();
+        //}
 
-            ViewBag.GymID = new SelectList(db.AspNetUsers, "Id", "Email", gymMember.GymID);
-            return View(gymMember);
-        }
+        //// POST: GymMembers/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "GymID,FirstName,LastName,City,State,Phone,GoalDescription,ProfilePic")] GymMember gymMember, HttpPostedFileBase profilePic, RegisterViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
+
+        //        #region Img Upload
+
+        //        string imgName = "default.jpg";
+
+        //        if (profilePic != null)
+        //        {
+        //            imgName = profilePic.FileName;
+
+        //            string ext = imgName.Substring(imgName.LastIndexOf('.'));
+
+        //            string[] goodExts = { ".jpg", ".jpeg", "gif", ".png" };
+
+        //            if (goodExts.Contains(ext.ToLower()))
+        //            {
+        //                imgName = Guid.NewGuid() + ext;
+
+        //                profilePic.SaveAs(Server.MapPath("~/Content/img/" + imgName));
+        //            }
+        //            else
+        //            {
+        //                imgName = "default.jpg";
+        //            }
+        //        }
+
+        //        #endregion
+
+        //            #region Custom User Details (GymMember Table)
+
+        //            GymMember newGymMember = new GymMember();
+        //            newGymMember.GymID = user.Id;
+        //            newGymMember.FirstName = model.FirstName;
+        //            newGymMember.LastName = model.LastName;
+        //            newGymMember.City = model.City;
+        //            newGymMember.State = model.State;
+        //            newGymMember.Phone = model.Phone;
+        //            newGymMember.GoalDescription = model.GoalDescription;
+        //            newGymMember.ProfilePic = imgName;
+
+
+        //            SoulsticeEntities db = new SoulsticeEntities();
+        //            db.GymMembers.Add(newGymMember);
+        //            db.SaveChanges();
+
+
+        //            #endregion
+
+        //     }
+
+        //    ViewBag.GymID = new SelectList(db.AspNetUsers, "Id", "Email", gymMember.GymID);
+        //    return View(gymMember);
+        //}
+        #endregion
+
 
         // GET: GymMembers/Edit/5
         public ActionResult Edit(string id)
@@ -85,10 +136,39 @@ namespace Soulstice.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GymID,FirstName,LastName,City,State,Phone,GoalDescription,ProfilePic")] GymMember gymMember)
+        public ActionResult Edit([Bind(Include = "GymID,FirstName,LastName,City,State,Phone,GoalDescription,ProfilePic")] GymMember gymMember, HttpPostedFileBase profilePic)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+                //use a default image if none is provided
+                string imgName = "default.jpg";
+
+                if (profilePic != null) //your httpPostedFileBase Object that should be added to the action != null
+                {
+                    imgName = profilePic.FileName;
+
+                    string ext = imgName.Substring(imgName.LastIndexOf('.'));
+
+                    string[] goodExts = { ".jpg", ".jpeg", "gif", ".png" };
+
+                    if (goodExts.Contains(ext.ToLower())) /*&& (profilePic.ContentLength <= 4194304)) *///4mb max asp.net
+                    {
+                        imgName = Guid.NewGuid() + ext;
+
+                        profilePic.SaveAs(Server.MapPath("~/Content/img/" + imgName));
+
+                    }
+                    else
+                    {
+                        imgName = "default.jpg";
+                    }
+                }
+
+                gymMember.ProfilePic = imgName;
+
+                #endregion
+
                 db.Entry(gymMember).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

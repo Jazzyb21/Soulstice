@@ -202,6 +202,7 @@
     <Content Include="Content\CustomStyles.css" />
     <Content Include="Content\fonts\classy-fonts.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\img\abbi.jpg" />
     <Content Include="Content\img\bg-img\1.jpg" />
     <Content Include="Content\img\bg-img\10.jpg" />
     <Content Include="Content\img\bg-img\11.jpg" />
@@ -277,8 +278,15 @@
     <Content Include="Content\img\core-img\p5.png" />
     <Content Include="Content\img\core-img\quote.png" />
     <Content Include="Content\img\core-img\signature.png" />
+    <Content Include="Content\img\default.jpg" />
+    <Content Include="Content\img\gemma.jpg" />
+    <Content Include="Content\img\illana.jpg" />
     <Content Include="Content\img\ivana-cajina-unsplash.jpg" />
+    <Content Include="Content\img\john-fornander.jpg" />
     <Content Include="Content\img\lucas-sankey-unsplash.jpg" />
+    <Content Include="Content\img\man-climbing.jpg" />
+    <Content Include="Content\img\trey.jpg" />
+    <Content Include="Content\img\yannic-laderach.jpg" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Soulstice.DATA.EF;
+using System;
 
 namespace Soulstice.UI.MVC.Controllers
 {
@@ -146,16 +147,45 @@ namespace Soulstice.UI.MVC.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase profilePic)
         {
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+                #region Img Upload
+
+                string imgName = "default.jpg";
+
+                if (profilePic != null)
+                {
+                    imgName = profilePic.FileName;
+
+                    string ext = imgName.Substring(imgName.LastIndexOf('.'));
+
+                    string[] goodExts = { ".jpg", ".jpeg", "gif", ".png" };
+
+                    if (goodExts.Contains(ext.ToLower()))
+                    {
+                        imgName = Guid.NewGuid() + ext;
+
+                        profilePic.SaveAs(Server.MapPath("~/Content/img/" + imgName));
+                    }
+                    else
+                    {
+                        imgName = "default.jpg";
+                    }
+                }
+
+                #endregion
+
                 if (result.Succeeded)
                 {
                     //sets default to member
                     UserManager.AddToRole(user.Id, "member");
+
+              
 
                     #region Custom User Details (GymMember Table)
 
@@ -167,12 +197,13 @@ namespace Soulstice.UI.MVC.Controllers
                     newGymMember.State = model.State;
                     newGymMember.Phone = model.Phone;
                     newGymMember.GoalDescription = model.GoalDescription;
-                    newGymMember.ProfilePic = model.ProfilePic;
+                    newGymMember.ProfilePic = imgName;
+
 
                     SoulsticeEntities db = new SoulsticeEntities();
                     db.GymMembers.Add(newGymMember);
                     db.SaveChanges();
-                    
+
 
                     #endregion
                     return View("Login");

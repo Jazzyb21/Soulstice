@@ -24,6 +24,7 @@ namespace Soulstice.DATA.EF
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Specialty { get; set; }
+        public string InstructorPic { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Class> Classes { get; set; }
