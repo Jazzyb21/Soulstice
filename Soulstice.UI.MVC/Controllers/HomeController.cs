@@ -26,24 +26,38 @@ namespace Soulstice.UI.MVC.Controllers
                 
                 GymMember gm = db.GymMembers.Where(x => x.GymID == currentUser).Single();
                 ViewBag.GymMember = $"Hi, {gm.FirstName}!";
-            }
-
-           
-
-
+            }        
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "ReservationID,GymID,ClassID")] Reservation reservation)
+        public ActionResult Index([Bind(Include = "ReservationID,GymID,ClassID,DateSubmitted")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
-                reservation.GymID = User.Identity.GetUserId();
-                db.Reservations.Add(reservation);
-                db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                //Get count of number of people registered to take a specific class
+                var numberPeople = db.Reservations.Where(x => x.ClassID == reservation.ClassID).Count();
+
+
+                //get reservations limit for specific class - good code
+                var resLimit = db.Classes.Where(x => x.ClassID == reservation.ClassID).Single().ReservationLimit;
+
+
+                if (numberPeople < resLimit)
+                {
+                    //    //create reservation
+                    reservation.GymID = User.Identity.GetUserId();
+                    db.Reservations.Add(reservation);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewBag.Message = "This class had reached the maximum number of particpants for this class. Please choose another one.";
+                }
+
+              
             }
 
             ViewBag.ClassID = new SelectList(db.Classes, "ClassID", "ClassName", reservation.ClassID);

@@ -17,6 +17,7 @@ namespace Soulstice.DATA.EF
         public int ReservationID { get; set; }
         public string GymID { get; set; }
         public int ClassID { get; set; }
+        public Nullable<System.DateTime> DateSubmitted { get; set; }
     
         public virtual Class Class { get; set; }
         public virtual GymMember GymMember { get; set; }

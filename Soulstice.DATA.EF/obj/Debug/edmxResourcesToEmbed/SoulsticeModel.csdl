@@ -38,6 +38,7 @@
     <Property Name="ClassID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Class" Relationship="SoulsticeModel.FK_Reservations_Classes1" FromRole="Reservation" ToRole="Class" />
     <NavigationProperty Name="GymMember" Relationship="SoulsticeModel.FK_Reservations_GymMembers" FromRole="Reservation" ToRole="GymMember" />
+    <Property Name="DateSubmitted" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="WeekDay">
     <Key>

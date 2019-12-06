@@ -23,6 +23,7 @@ namespace Soulstice.UI.MVC.Controllers
             return View(reservations.ToList());
         }
 
+        #region Details Action
         //// GET: Reservations/Details/5
         //public ActionResult Details(int? id)
         //{
@@ -37,6 +38,8 @@ namespace Soulstice.UI.MVC.Controllers
         //    }
         //    return View(reservation);
         //}
+        #endregion
+
         [Authorize(Roles = "Member, Admin")]
         public ActionResult GymMemberReservation()
         {
@@ -48,47 +51,37 @@ namespace Soulstice.UI.MVC.Controllers
                 GymMember gm = db.GymMembers.Where(x => x.GymID == currentUser).Single();
 
                 ViewBag.GymMember = $"Hi, {gm.FirstName}!";
-            }
-
-          
-
-           
+            }         
             return View(); 
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Member, Admin")]
-        public ActionResult GymMemberReservation([Bind(Include = "ReservationID,GymID,ClassID")] Reservation reservation)
+        public ActionResult GymMemberReservation([Bind(Include = "ReservationID,GymID,ClassID,DateSubmitted")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
-
-
                 //Get count of number of people registered to take a specific class
-                //what day is this res for?
-                //var dayOfClass = db.Classes.Where(c => c.WeekDayID == reservation.Class.WeekDayID).Single() ;
+                var numberPeople = db.Reservations.Where(x => x.ClassID == reservation.ClassID).Count();
 
-                //var classDay = db.Reservations.Where(x => x.Class.WeekDayID == reservation.Class.WeekDayID);
-
-
-               
+        
                 //get reservations limit for specific class - good code
                 var resLimit = db.Classes.Where(x => x.ClassID == reservation.ClassID).Single().ReservationLimit;
 
 
-                //if(peopleCount < reservationLimit)
-                //{
-                //    //create reservation
+                if (numberPeople < resLimit)
+                {
+                    //    //create reservation
                     reservation.GymID = User.Identity.GetUserId();
                     db.Reservations.Add(reservation);
                     db.SaveChanges();
                     return RedirectToAction("Index", "Classes");
-                //}
-                //else
-                //{
-                //    ViewBag.Message = "This class had reached the maximum number of particpants for this class. Please choose another one.";
-                //}
+                }
+                else
+                {
+                    ViewBag.Message = "This class had reached the maximum number of particpants for this class. Please choose another one.";
+                }
 
             }
 
@@ -96,9 +89,6 @@ namespace Soulstice.UI.MVC.Controllers
 
             return View(reservation);
         }
-
-
-
 
         // GET: Reservations/Create
         [Authorize(Roles = "Admin")]
@@ -117,7 +107,7 @@ namespace Soulstice.UI.MVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "ReservationID,GymID,ClassID")] Reservation reservation)
+        public ActionResult Create([Bind(Include = "ReservationID,GymID,ClassID,DateSubmitted")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
@@ -131,6 +121,7 @@ namespace Soulstice.UI.MVC.Controllers
             return View(reservation);
         }
 
+        #region Edit Get and Post Actions
         //// GET: Reservations/Edit/5
         //public ActionResult Edit(int? id)
         //{
@@ -165,6 +156,8 @@ namespace Soulstice.UI.MVC.Controllers
         //    ViewBag.GymID = new SelectList(db.GymMembers, "GymID", "FirstName", reservation.GymID);
         //    return View(reservation);
         //}
+        #endregion
+
 
         // GET: Reservations/Delete/5
         [Authorize(Roles ="Admin")]

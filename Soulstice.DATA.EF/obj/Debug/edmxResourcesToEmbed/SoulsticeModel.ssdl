@@ -60,6 +60,7 @@
     <Property Name="ReservationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="GymID" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="ClassID" Type="int" Nullable="false" />
+    <Property Name="DateSubmitted" Type="date" />
   </EntityType>
   <EntityType Name="WeekDays">
     <Key>

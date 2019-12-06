@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Soulstice.UI.MVC.Models
@@ -122,13 +123,12 @@ namespace Soulstice.UI.MVC.Models
         [StringLength(13, ErrorMessage = "* The value must be 13 characters or less.")]
         public string Phone { get; set; }
 
-
         [Display(Name = "Goal")]
         [UIHint("MultilineText")]
         [DisplayFormat(NullDisplayText = "N/A")]
         public string GoalDescription { get; set; }
-
-        //[Display(Name = "Profile Picture")]
+        
+       //[Display(Name = "Profile Picture")]
         //public string ProfilePic { get; set; }
     }
 

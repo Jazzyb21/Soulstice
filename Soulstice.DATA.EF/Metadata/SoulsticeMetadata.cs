@@ -133,11 +133,15 @@ namespace Soulstice.DATA.EF
     public class ReservationMetadata
     {
 
+        [Display(Name = "Date Submitted")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        public DateTime DateSubmitted { get; set; }
     }
 
+    [MetadataType(typeof(ReservationMetadata))]
     public partial class Reservation
     {
-
+   
     }
     #endregion
 

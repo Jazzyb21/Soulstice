@@ -33,6 +33,7 @@
     <EntitySetMapping Name="Reservations">
       <EntityTypeMapping TypeName="SoulsticeModel.Reservation">
         <MappingFragment StoreEntitySet="Reservations">
+          <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
           <ScalarProperty Name="ReservationID" ColumnName="ReservationID" />
           <ScalarProperty Name="GymID" ColumnName="GymID" />
           <ScalarProperty Name="ClassID" ColumnName="ClassID" />
