@@ -5,17 +5,6 @@
 
 @{
     ViewBag.Title = "Create Reservation";
-
-    //SoulsticeEntities db = new SoulsticeEntities();
-
-    //string currentUser = User.Identity.GetUserId();
-
-    //if (!string.IsNullOrEmpty(currentUser) && User.IsInRole("member"))
-    //{
-    //    GymMember gm = db.GymMembers.Where(x => x.GymID == currentUser).Single();
-    //}
-
-
 }
 <!-- Welcome Area Start -->
 <section class="welcome-area">
@@ -104,10 +93,13 @@
             <div class="hotel-search-form-area">
                 <div class="container-fluid">
                     <div class="hotel-search-form">
-                        <h2 class="text-center" style="margin-bottom: 1.5em;">@ViewBag.GymMember</h2>
+                        <h2 class="text-center">@ViewBag.GymMember</h2>
+                        <p style="color: red;"><em>@ViewBag.Message</em></p>
+                        <h6 class="text-center" style="margin-bottom: 1.5em;">Every Class is 8 weeks - Class Reservations are for the 8 Week Course</h6>
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="row">
                             <div class="offset-2 col-md-8">
+                                @Html.TextBox("DateSubmitted", DateTime.Now, new { @readonly = "readonly", style = "Display: none;" })
                                 @Html.DropDownList("Classid", null, "Select a Class - Fee Due at Time of Class", htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Class.ClassID, "", new { @class = "text-danger" })
                             </div>

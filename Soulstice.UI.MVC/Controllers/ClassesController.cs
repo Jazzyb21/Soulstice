@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Soulstice.DATA.EF;
 
 namespace Soulstice.UI.MVC.Controllers
@@ -19,6 +20,19 @@ namespace Soulstice.UI.MVC.Controllers
         {
             var classes = db.Classes.Include(x => x.Instructor).Include(x => x.WeekDay);
             return View(classes.ToList());
+        }
+
+        //one click to reserve spot for a class
+        public ActionResult OneClickRes([Bind(Include = "ReservationID,GymID,ClassID,DateSubmitted")] Reservation reservation, int id)
+        {
+
+            reservation.GymID = User.Identity.GetUserId();
+            var getDate = DateTime.Now;
+            reservation.DateSubmitted = getDate;
+            reservation.ClassID = id;
+           db.Reservations.Add(reservation);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Classes/Details/5
@@ -37,7 +51,7 @@ namespace Soulstice.UI.MVC.Controllers
         }
 
         // GET: Classes/Create
-       [Authorize(Roles ="Admin, Staff")]
+        [Authorize(Roles = "Admin, Staff")]
         public ActionResult Create()
         {
             ViewBag.InstructorID = new SelectList(db.Instructors, "InstructorID", "FirstName");
@@ -139,4 +153,5 @@ namespace Soulstice.UI.MVC.Controllers
             base.Dispose(disposing);
         }
     }
+
 }

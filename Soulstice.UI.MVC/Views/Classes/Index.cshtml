@@ -6,6 +6,7 @@
 
 <div class="container">
     <h2 class="text-center">@ViewBag.Title</h2>
+    <h6 class="text-center">Every Class is 8 weeks - Class Reservations are for the 8 Week Course</h6>
 
     <p>
         @if (User.IsInRole("Admin"))
@@ -61,12 +62,27 @@
                     </td>
 
                     <td>
-                        @Html.ActionLink("Details", "Details", new { id = item.ClassID }) 
+                        @*@Html.ActionLink("Details", "Details", new { id = item.ClassID })*@
+                        <a href="@Url.Action("Details", "Classes", new { id = item.ClassID })" title="Details" alt="Details">
+                            <i class="fa fa-list-ul"></i>
+                        </a>
+                        @if (Request.IsAuthenticated)
+                        {
+                            @*@:| @Html.ActionLink("Reserve Spot Now", "OneClickRes", new { id = item.ClassID }, new { @class = "btn roberto-btn" })*@
+                            <a href="@Url.Action("OneClickRes", "Classes", new { id = item.ClassID })" title="Reserve Spot Now" alt="Reserve Spot Now">
+                                <i class="fa fa-check-square"></i>
+                            </a>
+                        }
                         @if (User.IsInRole("Admin"))
                         {
-                             @:| @Html.ActionLink("Delete", "Delete", new { id = item.ClassID })
+                            @*@:| @Html.ActionLink("Delete", "Delete", new { id = item.ClassID })*@
+                            <a href="@Url.Action("Delete", "Classes", new { id = item.ClassID })" title="Delete" alt="Delete">
+                                <i class="fa fa-trash"></i>
+                            </a>
                         }
-                        </td>
+
+                    </td>
+
                 </tr>
             }
         </tbody>
