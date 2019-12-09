@@ -1,36 +1,61 @@
 ﻿@model IEnumerable<Soulstice.UI.MVC.Models.ApplicationUser>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "User Admin";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
+<div class="container">
+    <h2 class="text-center">@ViewBag.Title</h2>
+    <p>
+        @Html.ActionLink("Create New User", "Create")
+    </p>
+    <table class="table" id="table_id">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
 
-        </th>
-    </tr>
+                </th>
+            </tr>
+        </thead>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Edit", "UsersAdmin", new { id = item.Id })">
+                            @Html.DisplayFor(modelItem => item.UserName)
+
+                        </a>
+                    </td>
+                    <td style="letter-spacing: .5em;" class="text-right">
+                        <span style="font-size: 1.5em;">
+                            <a href="@Url.Action("Details", "UsersAdmin", new { id = item.Id })" title="Details" alt="Details">
+                                <i class="fa fa-list-ul"></i>
+                            </a>
+                        </span>
+                        <span style="font-size: 1.5em;">
+                            <a style=" color: red;" href="@Url.Action("Delete", "UsersAdmin", new { id = item.Id })" title="Delete" alt="Delete">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+
+    @section scripts {
+        <script>
+            $(document).ready(function () {
+                $('#table_id').DataTable();
+            });
+        </script>
     }
-
-</table>

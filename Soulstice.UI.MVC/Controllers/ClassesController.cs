@@ -33,6 +33,7 @@ namespace Soulstice.UI.MVC.Controllers
            db.Reservations.Add(reservation);
             db.SaveChanges();
             return RedirectToAction("Index", "Home");
+
         }
 
         // GET: Classes/Details/5

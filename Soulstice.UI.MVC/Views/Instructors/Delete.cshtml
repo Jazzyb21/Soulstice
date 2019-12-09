@@ -1,48 +1,32 @@
 ﻿@model Soulstice.DATA.EF.Instructor
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete " + Model.InstructorName;
 }
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Instructor</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Specialty)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Specialty)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div id="contentContainer">
+        <h2 class="text-center mb-50">@ViewBag.Title</h2>
+        <div id="contentLeft">
+            <p><strong>@Html.DisplayNameFor(model => model.FirstName):</strong> @Html.DisplayFor(model => model.FirstName)</p>
+            <p><strong>@Html.DisplayNameFor(model => model.LastName):</strong> @Html.DisplayFor(model => model.LastName)</p>
         </div>
-    }
-</div>
+        <div id="contentRight">
+            <p> <strong>@Html.DisplayNameFor(model => model.Specialty):</strong> @Html.DisplayFor(model => model.Specialty)</p>
+        </div>
+        <div class="clearfix"></div>
+        <p id="footerLeft"> @Html.ActionLink("Back to Instructors", "Index")</p>
+        <p id="footerRight">
+            <input type="submit" value="Delete" class="btn btn-default" />
+        </p>
+
+
+        <div class="clearfix"></div>
+    </div>
+
+
+}

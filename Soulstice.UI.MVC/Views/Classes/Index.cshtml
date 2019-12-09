@@ -61,24 +61,28 @@
                         @Html.DisplayFor(modelItem => item.Instructor.FirstName)
                     </td>
 
-                    <td>
-                        @*@Html.ActionLink("Details", "Details", new { id = item.ClassID })*@
-                        <a href="@Url.Action("Details", "Classes", new { id = item.ClassID })" title="Details" alt="Details">
-                            <i class="fa fa-list-ul"></i>
-                        </a>
+                    <td style="letter-spacing: .5em;">
+                        <span style="font-size: 1.5em;">
+                            <a href="@Url.Action("Details", "Classes", new { id = item.ClassID })" title="Details" alt="Details">
+                                <i class="fa fa-list-ul"></i>
+                            </a>
+                        </span>
                         @if (Request.IsAuthenticated)
                         {
-                            @*@:| @Html.ActionLink("Reserve Spot Now", "OneClickRes", new { id = item.ClassID }, new { @class = "btn roberto-btn" })*@
-                            <a href="@Url.Action("OneClickRes", "Classes", new { id = item.ClassID })" title="Reserve Spot Now" alt="Reserve Spot Now">
-                                <i class="fa fa-check-square"></i>
-                            </a>
+                            <span style="font-size: 1.5em;">
+                                <a style=" color: #1CC3B2;" href="@Url.Action("OneClickRes", "Classes", new { id = item.ClassID })" title="Reserve Spot Now" alt="Reserve Spot Now">
+                                    <i class="fa fa-check-square"></i>
+                                </a>
+
+                            </span>
                         }
                         @if (User.IsInRole("Admin"))
                         {
-                            @*@:| @Html.ActionLink("Delete", "Delete", new { id = item.ClassID })*@
-                            <a href="@Url.Action("Delete", "Classes", new { id = item.ClassID })" title="Delete" alt="Delete">
-                                <i class="fa fa-trash"></i>
-                            </a>
+                            <span style="font-size: 1.5em;">
+                                <a style=" color: red;" href="@Url.Action("Delete", "Classes", new { id = item.ClassID })" title="Delete" alt="Delete">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </span>
                         }
 
                     </td>
@@ -92,8 +96,8 @@
 
 @section scripts {
     <script>
-            $(document).ready(function () {
-                $('#table_id').DataTable();
-            });
+        $(document).ready(function () {
+            $('#table_id').DataTable();
+        });
     </script>
 }

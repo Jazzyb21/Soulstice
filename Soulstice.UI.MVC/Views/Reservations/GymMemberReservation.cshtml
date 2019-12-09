@@ -8,16 +8,21 @@
 
 }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <div class="form-horizontal" id="contentContainer">
-        <div id="editContainer">
-            <h2 class="text-center">@ViewBag.GymMember</h2>
-            <p style="color: red;"><em>@ViewBag.Message</em></p>
-            <h6 class="text-center">Every Class is 8 weeks - Class Reservations are for the 8 Week Course</h6>
 
+
+
+
+
+<div class="form-horizontal" id="contentContainer">
+    <div id="editContainer">
+        <h2 class="text-center">@ViewBag.GymMember</h2>
+        <p style="color: red;"><em>@ViewBag.Message</em></p>
+        <h6 class="text-center">Every Class is 8 weeks - Class Reservations are for the 8 Week Course</h6>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
             <div class="row">
                 <div class="offset-2 col-md-8">
                     @Html.TextBox("DateSubmitted", DateTime.Now, new { @readonly = "readonly", style = "Display: none;" })
@@ -32,9 +37,10 @@
                 <p id="footerRight"> <input type="submit" value="Create" class="btn btn-default" /></p>
                 <div class="clearfix"></div>
             </div>
-        </div>
+        }
     </div>
-}
+</div>
+
 
 
 

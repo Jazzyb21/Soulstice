@@ -4,84 +4,21 @@
     ViewBag.Title = "Contact";
 }
 
-@*<h2>Contact</h2>
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>ContactViewModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
-
-<div class="breadcrumb-area contact-breadcrumb bg-img bg-overlay jarallax" style="background-image: url(../Content/img/bg-img/18.jpg);">
+<div class="breadcrumb-area contact-breadcrumb bg-img bg-overlay jarallax" style="background-image: url(../Content/img/bruce-mars.jpg);">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="breadcrumb-content text-center mt-100">
                     <h2 class="page-title">Contact Us</h2>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
-                        </ol>
-                    </nav>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Breadcrumb Area End -->
- <!--Contact Info Area Start -->
+<!--Contact Info Area Start -->
 <section class="google-maps-contact-info">
     <div class="container-fluid">
         <div class="google-maps-contact-content">
@@ -115,7 +52,7 @@
                     <div class="single-contact-info">
                         <i class="fa fa-envelope-o" aria-hidden="true"></i>
                         <h4>Email</h4>
-                        <p>soulstice@@gmail.com</p>
+                        <p>jasmyne.boggs@@outlook.com</p>
                     </div>
                 </div>
             </div>
@@ -137,34 +74,34 @@
                                 @using (Html.BeginForm())
                                 {
                                     @Html.AntiForgeryToken()
-                                <div class="row">
-                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    <div class="col-12 col-lg-6 wow fadeInUp" data-wow-delay="100ms">
-                                        @*<input type="text" name="message-name" class="form-control mb-30" placeholder="Your Name">*@
-                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control mb-30", placeholder = "Your Name" } })
-                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    <div class="row">
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="col-12 col-lg-6 wow fadeInUp" data-wow-delay="100ms">
+                                            @*<input type="text" name="message-name" class="form-control mb-30" placeholder="Your Name">*@
+                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control mb-30", placeholder = "Your Name" } })
+                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-12 col-lg-6 wow fadeInUp" data-wow-delay="100ms">
+                                            @*<input type="email" name="message-email" class="form-control mb-30" placeholder="Your Email">*@
+                                            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control mb-30", placeholder = "Subject" } })
+                                            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-12 col-lg-12 wow fadeInUp" data-wow-delay="100ms">
+                                            @*<input type="email" name="message-email" class="form-control mb-30" placeholder="Your Email">*@
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control mb-30", placeholder = "Your Email" } })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-12 wow fadeInUp" data-wow-delay="100ms">
+                                            @*<textarea name="message" class="form-control mb-30" placeholder="Your Message"></textarea>*@
+                                            @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control mb-30", placeholder = "Your Message" } })
+                                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-12 text-center wow fadeInUp" data-wow-delay="100ms">
+                                            <button type="submit" class="btn roberto-btn mt-15">Send Message</button>
+                                        </div>
                                     </div>
-                                    <div class="col-12 col-lg-6 wow fadeInUp" data-wow-delay="100ms">
-                                        @*<input type="email" name="message-email" class="form-control mb-30" placeholder="Your Email">*@
-                                        @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control mb-30", placeholder = "Subject" } })
-                                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
-                                    </div>
-                                    <div class="col-12 col-lg-12 wow fadeInUp" data-wow-delay="100ms">
-                                        @*<input type="email" name="message-email" class="form-control mb-30" placeholder="Your Email">*@
-                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control mb-30", placeholder = "Your Email" } })
-                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                                    </div>
-                                    <div class="col-12 wow fadeInUp" data-wow-delay="100ms">
-                                        @*<textarea name="message" class="form-control mb-30" placeholder="Your Message"></textarea>*@
-                                        @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control mb-30", placeholder = "Your Message" } })
-                                        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
-                                    </div>
-                                    <div class="col-12 text-center wow fadeInUp" data-wow-delay="100ms">
-                                        <button type="submit" class="btn roberto-btn mt-15">Send Message</button>
-                                    </div>
-                                </div>
-                                 }
-                                </div>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -173,3 +110,7 @@
         </div>
     </div>
 </section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -17,6 +17,17 @@ footer{
     width: 100%;
 }
 
+#navProfileImg {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
+
+.about-us-thumbnail {
+    position: relative;
+    z-index: -2500;
+}
 
 
 

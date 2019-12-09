@@ -203,6 +203,7 @@
     <Content Include="Content\fonts\classy-fonts.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\img\abbi.jpg" />
+    <Content Include="Content\img\active-adult-biceps-body-416809.jpg" />
     <Content Include="Content\img\bg-img\1.jpg" />
     <Content Include="Content\img\bg-img\10.jpg" />
     <Content Include="Content\img\bg-img\11.jpg" />
@@ -258,6 +259,8 @@
     <Content Include="Content\img\bg-img\7.jpg" />
     <Content Include="Content\img\bg-img\8.jpg" />
     <Content Include="Content\img\bg-img\9.jpg" />
+    <Content Include="Content\img\bruce-mars-pFyKRmDiWEA-unsplash.jpg" />
+    <Content Include="Content\img\bruce-mars.jpg" />
     <Content Include="Content\img\core-img\favicon.png" />
     <Content Include="Content\img\core-img\icon-1.png" />
     <Content Include="Content\img\core-img\icon-2.png" />
@@ -279,13 +282,21 @@
     <Content Include="Content\img\core-img\quote.png" />
     <Content Include="Content\img\core-img\signature.png" />
     <Content Include="Content\img\default.jpg" />
+    <Content Include="Content\img\foto-garage-ag-PQGfC-J63VM-unsplash.jpg" />
     <Content Include="Content\img\gemma.jpg" />
     <Content Include="Content\img\illana.jpg" />
     <Content Include="Content\img\ivana-cajina-unsplash.jpg" />
+    <Content Include="Content\img\john-arano-h4i9G-de7Po-unsplash.jpg" />
     <Content Include="Content\img\john-fornander.jpg" />
     <Content Include="Content\img\lucas-sankey-unsplash.jpg" />
     <Content Include="Content\img\man-climbing.jpg" />
+    <Content Include="Content\img\man-lifting-a-barbell-116078.jpg" />
+    <Content Include="Content\img\scott-webb-Vn39uEkX00s-unsplash.jpg" />
+    <Content Include="Content\img\tinified %283%29\active-adult-biceps-body-416809.jpg" />
+    <Content Include="Content\img\tinified %283%29\man-lifting-a-barbell-116078.jpg" />
+    <Content Include="Content\img\tinified %283%29\woman-lifting-barbell-1552249.jpg" />
     <Content Include="Content\img\trey.jpg" />
+    <Content Include="Content\img\woman-lifting-barbell-1552249.jpg" />
     <Content Include="Content\img\yannic-laderach.jpg" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
@@ -643,6 +654,8 @@
     <Content Include="Views\Reservations\GymMemberReservation.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\EmailConfirmation.cshtml" />
+    <Content Include="Views\Reservations\ReservationConfirmation.cshtml" />
+    <Content Include="Views\Home\ReservationConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Soulstice.DATA.EF\Soulstice.DATA.EF.csproj">

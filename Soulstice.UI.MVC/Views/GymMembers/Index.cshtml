@@ -53,11 +53,19 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                     </td>
-                    <td>
-                        @Html.ActionLink("More Info", "Details", new { id = item.GymID })
+                    <td  style="letter-spacing: .5em;">
+                        <span style="font-size: 1.5em;">
+                            <a href="@Url.Action("Details", "GymMembers", new { id = item.GymID })" title="Details" alt="Details">
+                                <i class="fa fa-list-ul"></i>
+                            </a>
+                        </span>
                         @if (User.IsInRole("Admin"))
                         {
-                           @:| @Html.ActionLink("Delete", "Delete", new { id = item.GymID })
+                            <span style="font-size: 1.5em;">
+                                <a style=" color: red;" href="@Url.Action("Delete", "GymMembers", new { id = item.GymID })" title="Delete" alt="Delete">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </span>
                         }
 
                     </td>

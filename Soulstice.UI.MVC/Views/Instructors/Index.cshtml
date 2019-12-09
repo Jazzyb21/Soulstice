@@ -4,55 +4,8 @@
     ViewBag.Title = "Instructors";
 }
 
-@*<div class="container">
-    <h2 class="text-center">@ViewBag.Title</h2>
 
-    @if (User.IsInRole("Admin"))
-    {
-        <p>
-            @Html.ActionLink("Add New Instructor", "Create")
-        </p>
-    }
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.InstructorName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Specialty)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        <a href="@Url.Action("Edit", "Instructors", new { id=item.InstructorID })">
-                            @Html.DisplayFor(modelItem => item.InstructorName)
-                        </a>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Specialty)
-                    </td>
-                    <td>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            @Html.ActionLink("Delete", "Delete", new { id = item.InstructorID })
-                        }
-                    </td>
-                </tr>
-            }
-        </tbody>
-
-    </table>
-</div>*@
-
-
-<!-- Blog Area Start -->
+<!--Instructor Start -->
 <section class="roberto-blog-area section-padding-100-0">
     <div class="container">
         @if (User.IsInRole("Admin"))
@@ -83,7 +36,7 @@
                         <p class="text-center"> @Html.DisplayFor(modelItem => item.Specialty)</p>
                         @if (User.IsInRole("Admin"))
                         {
-                        <span id="iconRight"><a href="@Url.Action("Delete", "Instructors", new { id = item.InstructorID, @class = "btn continue-btn" })"><i class="fa fa-trash" aria-hidden="true"></i></a></span>
+                        <span id="iconRight"><a  style="color:red;" href="@Url.Action("Delete", "Instructors", new { id = item.InstructorID, @class = "btn continue-btn" })"><i class="fa fa-trash" aria-hidden="true"></i></a></span>
                         }
                         </div>
                 </div>

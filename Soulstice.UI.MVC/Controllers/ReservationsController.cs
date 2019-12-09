@@ -72,11 +72,17 @@ namespace Soulstice.UI.MVC.Controllers
 
                 if (numberPeople < resLimit)
                 {
-                    //    //create reservation
+                    //create reservation
+                    string currentUser = User.Identity.GetUserId();
+                    GymMember gm = db.GymMembers.Where(x => x.GymID == currentUser).Single();
+
+                    ViewBag.GymMember = gm.FirstName;
+
+
                     reservation.GymID = User.Identity.GetUserId();
                     db.Reservations.Add(reservation);
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Classes");
+                    return View("ReservationConfirmation", reservation);
                 }
                 else
                 {
@@ -90,6 +96,7 @@ namespace Soulstice.UI.MVC.Controllers
             return View(reservation);
         }
 
+  
         // GET: Reservations/Create
         [Authorize(Roles = "Admin")]
         public ActionResult Create()

@@ -6,18 +6,20 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Soulstice.DATA.EF;
 using Soulstice.UI.MVC.Models;
 
 namespace Soulstice.UI.MVC.Controllers
 {
-   [Authorize(Roles ="Admin, Staff")]
+   
     public class GymMembersController : Controller
     {
         private SoulsticeEntities db = new SoulsticeEntities();
 
         // GET: GymMembers
         [Authorize]
+        [Authorize(Roles = "Admin, Staff")]
         public ActionResult Index()
         {
             var gymMembers = db.GymMembers.Include(g => g.AspNetUser);
@@ -25,7 +27,7 @@ namespace Soulstice.UI.MVC.Controllers
         }
 
         // GET: GymMembers/Details/5
-        [Authorize]
+        [Authorize(Roles = "Admin, Staff")]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -116,6 +118,7 @@ namespace Soulstice.UI.MVC.Controllers
 
 
         // GET: GymMembers/Edit/5
+
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -128,7 +131,16 @@ namespace Soulstice.UI.MVC.Controllers
                 return HttpNotFound();
             }
             ViewBag.GymID = new SelectList(db.AspNetUsers, "Id", "Email", gymMember.GymID);
-            return View(gymMember);
+
+            gymMember.GymID = User.Identity.GetUserId();
+
+            if (gymMember.GymID == id)
+            {
+                return View(gymMember);
+            }
+
+            return RedirectToAction("Index", "Home");
+            
         }
 
         // POST: GymMembers/Edit/5

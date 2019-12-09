@@ -13,6 +13,9 @@ namespace Soulstice.UI.MVC.Controllers
     {
         SoulsticeEntities db = new SoulsticeEntities();
 
+
+     
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -25,6 +28,9 @@ namespace Soulstice.UI.MVC.Controllers
             {
                 
                 GymMember gm = db.GymMembers.Where(x => x.GymID == currentUser).Single();
+                ViewBag.GymMemberID = gm.GymID;
+                ViewBag.ProfileImage = gm.ProfilePic;
+                ViewBag.GmName = gm.FullName;
                 ViewBag.GymMember = $"Hi, {gm.FirstName}!";
             }        
             return View();
@@ -46,24 +52,30 @@ namespace Soulstice.UI.MVC.Controllers
 
                 if (numberPeople < resLimit)
                 {
-                    //    //create reservation
+                    //create reservation
+                    string currentUser = User.Identity.GetUserId();
+                    GymMember gm = db.GymMembers.Where(x => x.GymID == currentUser).Single();
+                    ViewBag.GymMember = gm.FirstName;
+
+
                     reservation.GymID = User.Identity.GetUserId();
                     db.Reservations.Add(reservation);
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Home");
+                    return View ("ReservationConfirmation", reservation);
                 }
                 else
                 {
                     ViewBag.Message = "This class had reached the maximum number of particpants for this class. Please choose another one.";
                 }
-
-              
+           
             }
 
             ViewBag.ClassID = new SelectList(db.Classes, "ClassID", "ClassName", reservation.ClassID);
 
             return View(reservation);
         }
+
+
 
         [HttpGet]
         public ActionResult About()
