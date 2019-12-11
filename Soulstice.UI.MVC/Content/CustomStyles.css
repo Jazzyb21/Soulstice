@@ -23,6 +23,29 @@ footer{
     width: 50px;
 }
 
+li a.active {
+    color: #1cc3b2 !important;
+}
+
+span.current{
+    white-space: pre-wrap;
+}
+
+.roberto-about-area .hotel-search-form-area .nice-select {
+    height: auto;
+}
+
+@media only screen and (max-width: 975px) {
+
+    #navProfileImg {
+       display: none;
+    }
+}
+
+.breakpoint-on .classynav > ul > li > a.hamMenuPicture{
+    background-color: unset;
+}
+
 
 .about-us-thumbnail {
     position: relative;
@@ -125,6 +148,7 @@ textarea.form-control {
 .nice-select{
     float: unset;
     width: unset;
+    height:auto;
 }
 
 /*instructor index*/

@@ -7,6 +7,8 @@
 <div class="container">
     <h2 class="text-center">@ViewBag.Title</h2>
     <h6 class="text-center">Every Class is 8 weeks - Class Reservations are for the 8 Week Course</h6>
+    <h6 class="text-center" style="color: red">@ViewBag.Message</h6>
+    <h6 class="text-center"  style="color: red" >@ViewBag.EnrollmentMessage</h6>
 
     <p>
         @if (User.IsInRole("Admin"))

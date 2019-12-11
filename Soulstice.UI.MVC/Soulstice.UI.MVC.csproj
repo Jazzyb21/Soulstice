@@ -282,6 +282,12 @@
     <Content Include="Content\img\core-img\quote.png" />
     <Content Include="Content\img\core-img\signature.png" />
     <Content Include="Content\img\default.jpg" />
+    <Content Include="Content\img\favicon_io\android-chrome-192x192.png" />
+    <Content Include="Content\img\favicon_io\android-chrome-512x512.png" />
+    <Content Include="Content\img\favicon_io\apple-touch-icon.png" />
+    <Content Include="Content\img\favicon_io\favicon-16x16.png" />
+    <Content Include="Content\img\favicon_io\favicon-32x32.png" />
+    <Content Include="Content\img\favicon_io\favicon.ico" />
     <Content Include="Content\img\foto-garage-ag-PQGfC-J63VM-unsplash.jpg" />
     <Content Include="Content\img\gemma.jpg" />
     <Content Include="Content\img\illana.jpg" />
@@ -630,6 +636,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\style.css.map" />
+    <Content Include="Content\img\favicon_io\site.webmanifest" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\GymMembers\Create.cshtml" />
@@ -656,6 +663,7 @@
     <Content Include="Views\Home\EmailConfirmation.cshtml" />
     <Content Include="Views\Reservations\ReservationConfirmation.cshtml" />
     <Content Include="Views\Home\ReservationConfirmation.cshtml" />
+    <Content Include="Views\Classes\ReservationConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Soulstice.DATA.EF\Soulstice.DATA.EF.csproj">

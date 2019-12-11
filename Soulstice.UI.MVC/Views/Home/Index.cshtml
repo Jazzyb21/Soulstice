@@ -19,6 +19,7 @@
                         <div class="col-12">
                             <div class="welcome-text text-center">
                                 <h6 data-animation="fadeInLeft" data-delay="200ms">Mind &amp; Body</h6>
+                                <h6 data-animation="fadeInLeft" data-delay="200ms" class="quoteAPI"> </h6>
                                 <h2 data-animation="fadeInLeft" data-delay="500ms">Soulstice</h2>
                                 @if (Request.IsAuthenticated)
                                 {
@@ -41,6 +42,7 @@
                         <div class="col-12">
                             <div class="welcome-text text-center">
                                 <h6 data-animation="fadeInUp" data-delay="200ms">Mind &amp; Body</h6>
+                                <h6 data-animation="fadeInLeft" data-delay="200ms" class="quoteAPI"></h6>
                                 <h2 data-animation="fadeInUp" data-delay="500ms">Soulstice</h2>
                                 @if (Request.IsAuthenticated)
                                 {
@@ -63,6 +65,7 @@
                         <div class="col-12">
                             <div class="welcome-text text-center">
                                 <h6 data-animation="fadeInDown" data-delay="200ms">Mind &amp;Body</h6>
+                                <h6 data-animation="fadeInLeft" data-delay="200ms" class="quoteAPI"> </h6>
                                 <h2 data-animation="fadeInDown" data-delay="500ms">Soulstice</h2>
                                 @if (Request.IsAuthenticated)
                                 {
@@ -95,12 +98,13 @@
                     <div class="hotel-search-form">
                         <h2 class="text-center">@ViewBag.GymMember</h2>
                         <p style="color: red;"><em>@ViewBag.Message</em></p>
-                        <h6 class="text-center" style="margin-bottom: 1.5em;">Every Class is 8 weeks - Class Reservations are for the 8 Week Course</h6>
+                        <p style="color: red;"><em>@ViewBag.EnrollmentMessage</em></p>
+                        <h6 class="text-center" style="margin-bottom: 1.5em;">Every Class is 8 weeks -Classes start the week of January 6, 2020 - Fee Due at Time of Class</h6>
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="row">
-                            <div class="offset-2 col-md-8">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 col-sm-4">
                                 @Html.TextBox("DateSubmitted", DateTime.Now, new { @readonly = "readonly", style = "Display: none;" })
-                                @Html.DropDownList("Classid", null, "Select a Class - Fee Due at Time of Class", htmlAttributes: new { @class = "form-control" })
+                                @Html.DropDownList("Classid", null, "Select a Class", htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Class.ClassID, "", new { @class = "text-danger" })
                             </div>
 
@@ -152,3 +156,12 @@
     </div>
 </div>
     </section>
+
+
+<script>
+
+    var quote = @ViewBag.Test;
+    console.log(quote);
+
+
+</script>

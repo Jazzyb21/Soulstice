@@ -21,14 +21,24 @@
     {
         @Html.AntiForgeryToken()
 
+
         if (User.IsInRole("Admin") || (User.IsInRole("Staff")))
         {
-            <li>@Html.ActionLink($"Hi, {userName}!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+
+
+            <li>@Html.ActionLink($"Hi, Guest!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+            <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+            <li> @Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         }
         else
         {
-            <li><a href="@Url.Action("Edit", "GymMembers", new { id = currentUser.GymID } )">Hi, @userName!</a></li>
+            <a class="hamMenuPicture" href="@Url.Action("Edit", "GymMembers", new { id = currentUser.GymID })">Hi, @userName</a>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+
+
         }
+
     }
 }
 else
@@ -38,6 +48,7 @@ else
     <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
 
 }
+
 
 
 

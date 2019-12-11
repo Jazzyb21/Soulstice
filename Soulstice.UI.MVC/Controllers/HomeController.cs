@@ -6,15 +6,15 @@ using Soulstice.UI.MVC.Models;
 using System.Net;
 using System.Net.Mail;
 using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace Soulstice.UI.MVC.Controllers
 {
     public class HomeController : Controller
     {
         SoulsticeEntities db = new SoulsticeEntities();
-
-
-     
 
         [HttpGet]
         public ActionResult Index()
@@ -28,8 +28,7 @@ namespace Soulstice.UI.MVC.Controllers
             {
                 
                 GymMember gm = db.GymMembers.Where(x => x.GymID == currentUser).Single();
-                ViewBag.GymMemberID = gm.GymID;
-                ViewBag.ProfileImage = gm.ProfilePic;
+
                 ViewBag.GmName = gm.FullName;
                 ViewBag.GymMember = $"Hi, {gm.FirstName}!";
             }        
@@ -42,39 +41,53 @@ namespace Soulstice.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                string currentUser = User.Identity.GetUserId();
+                GymMember gm = db.GymMembers.Where(x => x.GymID == currentUser).Single();
                 //Get count of number of people registered to take a specific class
                 var numberPeople = db.Reservations.Where(x => x.ClassID == reservation.ClassID).Count();
-
 
                 //get reservations limit for specific class - good code
                 var resLimit = db.Classes.Where(x => x.ClassID == reservation.ClassID).Single().ReservationLimit;
 
+                //get list of current classes the user is taking
+                var currentUserClasses = db.Reservations.Where(x => x.GymID == gm.GymID);
+
+                //loop thru list of current userclasses
+                foreach (var item in currentUserClasses)
+                {
+                    //compare those classes to the current class the the user is trying to enroll in
+                    if (item.ClassID == reservation.ClassID)
+                    {
+                        //if any of the currentUserClasses are really equal to the current class the user is trying to enroll in
+                        //display this message in the view
+                        ViewBag.GymMember = gm.FirstName;
+                        ViewBag.EnrollmentMessage = "You have already signed up for this class.";
+                        ViewBag.ClassID = new SelectList(db.Classes, "ClassID", "ClassName", reservation.ClassID);
+                        return View(reservation);
+                    }
+                }
 
                 if (numberPeople < resLimit)
                 {
-                    //create reservation
-                    string currentUser = User.Identity.GetUserId();
-                    GymMember gm = db.GymMembers.Where(x => x.GymID == currentUser).Single();
+
+                    //create reservation                 
                     ViewBag.GymMember = gm.FirstName;
-
-
                     reservation.GymID = User.Identity.GetUserId();
                     db.Reservations.Add(reservation);
                     db.SaveChanges();
-                    return View ("ReservationConfirmation", reservation);
+                    return View("ReservationConfirmation", reservation);
                 }
                 else
                 {
                     ViewBag.Message = "This class had reached the maximum number of particpants for this class. Please choose another one.";
                 }
-           
+
             }
 
             ViewBag.ClassID = new SelectList(db.Classes, "ClassID", "ClassName", reservation.ClassID);
 
             return View(reservation);
         }
-
 
 
         [HttpGet]

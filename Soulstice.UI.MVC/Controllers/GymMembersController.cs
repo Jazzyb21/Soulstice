@@ -132,15 +132,15 @@ namespace Soulstice.UI.MVC.Controllers
             }
             ViewBag.GymID = new SelectList(db.AspNetUsers, "Id", "Email", gymMember.GymID);
 
-            gymMember.GymID = User.Identity.GetUserId();
+            //gymMember.GymID = User.Identity.GetUserId();
 
             if (gymMember.GymID == id)
             {
                 return View(gymMember);
             }
 
-            return RedirectToAction("Index", "Home");
-            
+
+            return View();
         }
 
         // POST: GymMembers/Edit/5

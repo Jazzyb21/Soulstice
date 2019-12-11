@@ -1,0 +1,62 @@
+﻿@model Soulstice.DATA.EF.Reservation
+
+@{
+    ViewBag.Title = "Reservation Confirmation";
+}
+
+
+
+
+<div class="breadcrumb-area contact-breadcrumb bg-img bg-overlay jarallax" style="background-image: url(../Content/img/bruce-mars.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center mt-100">
+                    <h2 class="page-title">@ViewBag.Title</h2>
+                    <nav aria-label="breadcrumb">
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End -->
+<!--Contact Info Area Start -->
+<section class="google-maps-contact-info">
+    <div class="container-fluid">
+        <div class="google-maps-contact-content">
+            <div class="roberto-contact-form-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Section Heading -->
+                            <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
+                                <h6>Thank you for being a member of Soulstice.</h6>
+                                <h2>We look forward to seeing you in class!</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+
+                            <div class="roberto-contact-form">
+                                <div class="row">
+
+                                    <div class="col-12 col-lg-12 wow fadeInUp  text-center" data-wow-delay="100ms">
+                                        <p>
+                                            Thank you  @ViewBag.GymMember for reserving your spot in  @Html.DisplayFor(model => model.Class.ClassName) on
+                                            @Html.DisplayFor(model => model.Class.WeekDay.DayOfWeek).
+                                        </p>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

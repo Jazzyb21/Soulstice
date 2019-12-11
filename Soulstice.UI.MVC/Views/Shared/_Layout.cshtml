@@ -1,4 +1,5 @@
-﻿
+﻿@using Soulstice.DATA.EF;
+@using Microsoft.AspNet.Identity;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,7 @@
     <!-- Title -->
     <title>Soulstice</title>
     <!-- Favicon -->
+    <link rel="icon" href="~/Content/img/favicon_io/favicon-32x32.png">
     <!-- Stylesheet -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
     <link href="~/Content/style.css" rel="stylesheet" />
@@ -68,7 +70,7 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul id="nav">
-                                    <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
                                     @if (User.IsInRole("Admin") || (User.IsInRole("Staff")))
                                     {
                                         <li><a href="@Url.Action("Index", "GymMembers")">Members</a></li>
@@ -82,39 +84,43 @@
                                     }
 
                                     <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
-
-
-                                    <li>
-                                        @Html.Partial("_LoginPartial")
-
+                                    <li><a href="#">Account</a>
                                         <ul class="dropdown">
-                                            @if (User.IsInRole("Admin"))
-                                            {
-                                                <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
-                                                <li> @Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
-                                            }
-                                            @if (Request.IsAuthenticated)
-                                            {
-                                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-                                            }
+                                            <li>@Html.Partial("_LoginPartial")</li>
                                         </ul>
                                     </li>
+                                    <li>
+                                        @if (User.IsInRole("Member"))
+                                        {
+                                            SoulsticeEntities db = new SoulsticeEntities();
 
+                                            string userID = User.Identity.GetUserId();
+
+                                            var currentUser = db.GymMembers.Where(x => x.GymID == userID).FirstOrDefault();
+
+
+                                            string userPic = "default.jpg";
+
+                                            if (currentUser != null)
+                                            {
+                                                userPic = currentUser.ProfilePic;
+                                            }
+
+                                            <a class="hamMenuPicture" href="@Url.Action("Edit", "GymMembers", new { id = currentUser.GymID })">
+                                                <img id="navProfileImg" src="~/Content/img/@userPic" alt="@currentUser.FullName" title="@currentUser.FullName" />
+                                            </a>
+                                        }
+
+                                    </li>
                                 </ul>
 
 
                             </div>
                             <!-- Nav End -->
                         </div>
-                        @if (User.IsInRole("Member"))
-                        {
-                        <a href="@Url.Action("Edit", "GymMembers", new { id = ViewBag.GymMemberID })">
-                            <img id="navProfileImg" src="~/Content/img/@ViewBag.ProfileImage" alt="@ViewBag.GmName" title="@ViewBag.GmName" />
-                        </a>
-                               
-                         }
 
-                       
+
+
                     </nav>
                 </div>
             </div>
@@ -152,7 +158,7 @@
                             <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                             <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                             @*<a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>*@
-</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -173,5 +179,24 @@
     <!--jQuery Datatables-->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
     @RenderSection("scripts", required: false)
+
+    <script>
+        $(function () {
+            $('ul li a').each(function () {
+                if ($(this).attr('href') == window.location.pathname) {
+                    $(this).addClass('active');
+                }
+            });
+        });
+
+        $.getJSON('https://api.quotable.io/random', function (data) {
+            console.log(`${data.content} —${data.author}`)
+            $('.quoteAPI').text(`${data.content} —${data.author}`)
+        })
+
+   
+
+   
+    </script>
 </body>
 </html>
